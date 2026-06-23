@@ -147,12 +147,12 @@ const Canvas: React.FC<CanvasProps> = ({
       const containerWidth = container.clientWidth;
       const containerHeight = container.clientHeight;
       
-      // Calculate scale to fill the container completely
+      // Calculate scale to fit the entire image within the container
       const scaleX = containerWidth / img.width;
       const scaleY = containerHeight / img.height;
-      const newScale = Math.max(scaleX, scaleY); // Use max to ensure full coverage
+      const newScale = Math.min(scaleX, scaleY); // Use min to ensure entire image is visible
       
-      // Calculate new dimensions to fill container
+      // Calculate new dimensions to fit within container
       const newWidth = img.width * newScale;
       const newHeight = img.height * newScale;
       
@@ -192,7 +192,7 @@ const Canvas: React.FC<CanvasProps> = ({
       const containerHeight = container.clientHeight;
       const scaleX = containerWidth / img.width;
       const scaleY = containerHeight / img.height;
-      const newScale = Math.max(scaleX, scaleY);
+      const newScale = Math.min(scaleX, scaleY);
       const newWidth = img.width * newScale;
       const newHeight = img.height * newScale;
 

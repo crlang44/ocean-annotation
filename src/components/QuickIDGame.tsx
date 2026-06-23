@@ -22,13 +22,23 @@ import dolphinHard from "../data/images/dolphin_hard.jpg";
 // New images
 import dolphinHard2 from "../data/images/dolphin_hard2.jpeg";
 import dolphinHard3 from "../data/images/dolphin_hard3.avif";
+import dolphinHard4 from "../data/images/dolphin_hard4.jpg";
+import dolphinHard5 from "../data/images/dolphin_hard5.jpg";
+import dolphinHard6 from "../data/images/dolphin_hard6.jpg";
 import dolphinMedium2 from "../data/images/dolphin_medium2.jpg";
+import dolphinMedium3 from "../data/images/dolphin_medium3.jpg";
+import dolphinMedium4 from "../data/images/dolphin_medium4.jpg";
 import kelpEasy2 from "../data/images/kelp_easy2.jpeg";
 import kelpMedium2 from "../data/images/kelp_medium2.jpeg";
 import kelpMedium3 from "../data/images/kelp_medium3.webp";
 import sharkHard2 from "../data/images/shark_hard2.avif";
 import sharkMedium2 from "../data/images/shark_medium2.jpg";
 import sharkMedium3 from "../data/images/shark_medium3.webp";
+import sharkHard3 from "../data/images/shark_hard3.jpg";
+import sharkHard4 from "../data/images/shark_hard4.jpg";
+import sharkMedium4 from "../data/images/shark_medium4.jpg";
+import sharkMedium5 from "../data/images/shark_medium5.jpg";
+import sharkEasy2 from "../data/images/shark_easy2.jpg";
 
 // Game image interface
 interface GameImage {
@@ -44,31 +54,40 @@ interface QuickIDGameProps {
   resetGameRef?: React.MutableRefObject<(() => void) | null>;
 }
 
-// Sample game images - you'll replace these with your actual images
+// Sample game images - mixed order to avoid too many of the same answer in a row
 const gameImages: GameImage[] = [
-  // Easy images (shown first)
+  // Easy images (shown first) - mixed order
   { id: "1", imagePath: sharkClear, correctAnswer: "shark" },
   { id: "2", imagePath: kelpClear, correctAnswer: "kelp" },
   { id: "3", imagePath: dolphinClear, correctAnswer: "dolphin" },
-  { id: "10", imagePath: kelpEasy2, correctAnswer: "kelp" }, // New Easy
+  { id: "21", imagePath: sharkEasy2, correctAnswer: "shark" },
+  { id: "10", imagePath: kelpEasy2, correctAnswer: "kelp" },
 
-  // Medium difficulty
+  // Medium difficulty - mixed order
   { id: "4", imagePath: sharkMedium, correctAnswer: "shark" },
-  { id: "5", imagePath: kelpMedium, correctAnswer: "kelp" },
   { id: "6", imagePath: dolphinMedium, correctAnswer: "dolphin" },
-  { id: "11", imagePath: dolphinMedium2, correctAnswer: "dolphin" }, // New Medium
-  { id: "12", imagePath: kelpMedium2, correctAnswer: "kelp" }, // New Medium
-  { id: "13", imagePath: kelpMedium3, correctAnswer: "kelp" }, // New Medium
-  { id: "14", imagePath: sharkMedium2, correctAnswer: "shark" }, // New Medium
-  { id: "15", imagePath: sharkMedium3, correctAnswer: "shark" }, // New Medium
+  { id: "5", imagePath: kelpMedium, correctAnswer: "kelp" },
+  { id: "14", imagePath: sharkMedium2, correctAnswer: "shark" },
+  { id: "11", imagePath: dolphinMedium2, correctAnswer: "dolphin" },
+  { id: "12", imagePath: kelpMedium2, correctAnswer: "kelp" },
+  { id: "22", imagePath: sharkMedium4, correctAnswer: "shark" },
+  { id: "19", imagePath: dolphinMedium3, correctAnswer: "dolphin" },
+  { id: "13", imagePath: kelpMedium3, correctAnswer: "kelp" },
+  { id: "15", imagePath: sharkMedium3, correctAnswer: "shark" },
+  { id: "26", imagePath: dolphinMedium4, correctAnswer: "dolphin" },
+  { id: "23", imagePath: sharkMedium5, correctAnswer: "shark" },
 
-  // Hard (obscured/ambiguous)
+  // Hard (obscured/ambiguous) - mixed order
   { id: "7", imagePath: sharkHard, correctAnswer: "shark" },
+  { id: "16", imagePath: dolphinHard2, correctAnswer: "dolphin" },
   { id: "8", imagePath: kelpHard, correctAnswer: "kelp" },
-  { id: "9", imagePath: dolphinHard, correctAnswer: "shark" }, // Note: Original dolphinHard was a shark
-  { id: "16", imagePath: dolphinHard2, correctAnswer: "dolphin" }, // New Hard
-  { id: "17", imagePath: dolphinHard3, correctAnswer: "dolphin" }, // New Hard
-  { id: "18", imagePath: sharkHard2, correctAnswer: "shark" }, // New Hard
+  { id: "18", imagePath: sharkHard2, correctAnswer: "shark" },
+  { id: "17", imagePath: dolphinHard3, correctAnswer: "dolphin" },
+  { id: "24", imagePath: sharkHard3, correctAnswer: "shark" },
+  { id: "20", imagePath: dolphinHard4, correctAnswer: "dolphin" },
+  { id: "25", imagePath: sharkHard4, correctAnswer: "shark" },
+  { id: "27", imagePath: dolphinHard5, correctAnswer: "dolphin" },
+  { id: "28", imagePath: dolphinHard6, correctAnswer: "dolphin" },
 ];
 
 // No image cache needed - we're using DOM elements with display toggling

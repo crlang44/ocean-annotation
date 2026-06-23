@@ -58,7 +58,7 @@ const OceanAnnotationGamePage = () => {
   // Track if the game has started
   const [gameStarted, setGameStarted] = useState(false);
 
-  const TIMER_DURATION = 30; // 1 minute in seconds
+  const TIMER_DURATION = 60; // 1 minute in seconds
 
   // Load initial images based on round and set available labels from the entire set
   useEffect(() => {
@@ -422,20 +422,28 @@ const OceanAnnotationGamePage = () => {
               <div className="flex gap-4 h-[73vh] max-h-[73vh] overflow-hidden">
                 <div className="flex-1 relative aspect-[16/9] bg-white rounded-xl shadow-lg overflow-hidden flex items-center justify-center">
                   {selectedImage ? (
-                    <Canvas
-                      imageUrl={selectedImage.imagePath}
-                      selectedTool={selectedTool}
-                      currentLabel={currentLabel}
-                      onAnnotationComplete={handleAnnotationComplete}
-                      annotations={annotations}
-                      onAnnotationUpdate={setAnnotations}
-                      targetAnnotations={selectedImage.targetAnnotations}
-                      showGroundTruth={showGroundTruth}
-                      onToggleGroundTruth={() => setShowGroundTruth(!showGroundTruth)}
-                      originalWidth={selectedImage.originalWidth}
-                      originalHeight={selectedImage.originalHeight}
-                      disabled={imageSubmitted}
-                    />
+                    <>
+                      <Canvas
+                        imageUrl={selectedImage.imagePath}
+                        selectedTool={selectedTool}
+                        currentLabel={currentLabel}
+                        onAnnotationComplete={handleAnnotationComplete}
+                        annotations={annotations}
+                        onAnnotationUpdate={setAnnotations}
+                        targetAnnotations={selectedImage.targetAnnotations}
+                        showGroundTruth={showGroundTruth}
+                        onToggleGroundTruth={() => setShowGroundTruth(!showGroundTruth)}
+                        originalWidth={selectedImage.originalWidth}
+                        originalHeight={selectedImage.originalHeight}
+                        disabled={imageSubmitted}
+                      />
+                      {/* Image Counter Overlay */}
+                      {currentImages.length > 0 && (
+                        <div className="absolute top-4 right-12 bg-black/70 text-white px-3 py-1 rounded-lg text-sm font-medium backdrop-blur-sm">
+                          {currentImages.findIndex(img => img.id === selectedImage.id) + 1}/{currentImages.length}
+                        </div>
+                      )}
+                    </>
                   ) : (
                     <div className="flex items-center justify-center h-full">
                       <p>Please select an image</p>
@@ -447,18 +455,18 @@ const OceanAnnotationGamePage = () => {
                   {/* Annotation Tools or ScoreBoard */}
                   {!imageSubmitted && selectedImage ? (
                     <div className="flex flex-col gap-3">
-                      <p className="text-sm text-gray-700 text-center">
+                      <p className="text-base text-gray-700 text-center font-medium">
                         Drag to draw boxes around objects in the image. <br />
                       </p>
                       <div className="flex flex-col gap-3">
-                        <div className="flex flex-wrap gap-2 justify-center">
+                        <div className="flex flex-wrap gap-3 justify-center">
                           {availableLabels.map((label) => (
                             <Button
                               key={label}
                               variant="outline"
-                              size="sm"
+                              size="default"
                               onClick={() => handleLabelChange(label)}
-                              className={`text-xs ${currentLabel === label
+                              className={`text-base px-4 py-2 font-medium ${currentLabel === label
                                   ? `bg-${labelColors[label]?.slice(1)}/20 border-${labelColors[label]?.slice(1)}/30 text-${labelColors[label]?.slice(1)}`
                                   : ''
                                 }`}
@@ -474,15 +482,15 @@ const OceanAnnotationGamePage = () => {
 
                         <Button
                           variant="outline"
-                          size="sm"
+                          size="default"
                           onClick={handleClearAnnotations}
-                          className="text-gray-500 hover:text-red-500 flex items-center gap-2"
+                          className="text-base text-gray-500 hover:text-red-500 flex items-center gap-2 px-4 py-2"
                         >
-                          <Trash2 className="h-4 w-4" />
+                          <Trash2 className="h-5 w-5" />
                           Clear All
                         </Button>
                       </div>
-                      <p className="text-sm text-gray-700 text-center">
+                      <p className="text-base text-gray-700 text-center font-medium">
                         Make sure to select the correct type.
                       </p>
                     </div>
